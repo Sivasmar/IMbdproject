@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .auth-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 0.75rem;
+        }
+        .toggle-link {
+            text-align: center;
+            display: block;
+            margin-top: 1rem;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <section class="auth-section container mt-4">
+        <div id="login-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="login-password" placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <span class="toggle-link" id="show-signup">Don't have an account? Sign up</span>
+        </div>
+        <div id="signup-section" style="display: none;">
+            <h2>Signup</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="signup-email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="signup-password" placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-primary">Signup</button>
+            </form>
+            <span class="toggle-link" id="show-login">Already have an account? Login</span>
+        </div>
+    </section>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Toggle between login and signup
+        const loginSection = document.getElementById('login-section');
+        const signupSection = document.getElementById('signup-section');
+        const showSignup = document.getElementById('show-signup');
+        const showLogin = document.getElementById('show-login');
+
+        showSignup.addEventListener('click', () => {
+            loginSection.style.display = 'none';
+            signupSection.style.display = 'block';
+        });
+
+        showLogin.addEventListener('click', () => {
+            loginSection.style.display = 'block';
+            signupSection.style.display = 'none';
+        });
+
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('Logged in successfully');
+                })
+                .catch((error) => {
+                    alert('Error logging in: ' + error.message);
+                });
+        });
+    
+        // Signup form submission
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('Signed up successfully');
+                })
+                .catch((error) => {
+                    alert('Error signing up: ' + error.message);
+                });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="auth-section container mt-4">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="password" class="form-control" id="login-password" placeholder="Enter password">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <h2>Signup</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <input type="email" class="form-control" id="signup-email" placeholder="Enter email">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="password" class="form-control" id="signup-password" placeholder="Enter password">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Signup</button>
+        </form>
+    </section>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('Logged in successfully');
+                })
+                .catch((error) => {
+                    alert('Error logging in: ' + error.message);
+                });
+        });
+    
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('Signed up successfully');
+                })
+                .catch((error) => {
+                    alert('Error signing up: ' + error.message);
+                });
+        });
+    </script>
+    
+</body>
+</html> -->

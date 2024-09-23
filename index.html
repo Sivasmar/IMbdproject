@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Movie Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(170, 187, 177);
+            color: white;
+        }
+
+        .navbar-brand img {
+            margin-right: 15px;
+        }
+
+        .search-section {
+            margin-top: 20px;
+        }
+        .search {
+            color: rgb(0, 17, 255);
+        }
+
+        .results-section {
+            margin-top: 40px;
+        }
+
+        .movie-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            color: #343a40;
+            width: 300px;
+        }
+
+        .movie-card img {
+            max-width: 250px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .movie-details {
+            margin-top: 10px;
+        }
+
+        .movie-card h5 {
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="./logo.jpeg" alt="IMDb Logo" width="50" height="50">
+            IMDb Movie Info
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Fan Favorites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Top 10</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="search-section container mt-4">
+        <h2 class="search">Search for Movies, TV Shows, and Actors</h2>
+        <form id="search-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search-input" placeholder="Enter movie name or actor">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section container mt-4">
+        <h2 style="color: rgb(228, 15, 122);">TOP 10</h2>
+        <div id="results" class="row">
+            <!-- Movie cards will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <script  src="./imdb.js">
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <p>
+            <div class="movie-card">
+                <img src="${movie.Poster}" alt="${movie.Title} Poster">
+                <div class="movie-details">
+                    <h5>${movie.Title}</h5>
+                    <p>Year: ${movie.Year}</p>
+                </div>
+            </div>
+        </p> -->
+
+
+
+
+
+
+
+
+<!-- 
+
+//                 if(i.titleText.text.toLowerCase().includes(query.toLowerCase())){
+    //                 let h1 = document.createElement("h1");
+    //                 h1.innerHTML=i.titleText.text
+    //                 h1.style.color="white"
+    //                 document.body.appendChild(h1)
+    //                 }
+    //                 else{
+    //                     let h1 = document.createElement("h1");
+    //                 h1.innerHTML="movie not found"
+    //                 h1.style.color="red"
+    //                 document.body.appendChild(h1) 
+    //                 break;
+    //                 }
+    //             }
+    //             // if (finalResponse.data.status) {
+    //             //     console.log("hii")
+    //             //     data.data.forEach(movie => {
+    //             //         const movieCard = document.createElement('div');
+    //             //         movieCard.classList.add('col-md-4');
+    //             //         movieCard.innerHTML = "hello";
+    //             //         results.appendChild(movieCard);
+    //             //     });
+    //             // } else { -->
+    <!-- //             //     results.innerHTML = '<p style="color: white">No results found.</p>';} -->
